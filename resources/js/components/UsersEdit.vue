@@ -52,7 +52,6 @@ export default {
           console.log(error);
         })
         .then(_ => (this.saving = false));
-        console.log('antes de redirigir');
         setTimeout(() => this.$router.push({ name: "users.index" }), 1000);
     },
     onDelete() {
@@ -61,6 +60,9 @@ export default {
       api.delete(this.user.id).then(response => {
         this.message = "User Deleted";
         setTimeout(() => this.$router.push({ name: "users.index" }), 1000);
+      })
+      .catch(error => {
+          console.log(error);
       });
     }
   },

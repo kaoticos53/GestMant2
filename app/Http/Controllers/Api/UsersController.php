@@ -33,9 +33,14 @@ class UsersController extends Controller
 
     public function destroy(User $user)
     {
-        $user->delete();
-
-        return response(null, 204);
+        try {
+            $user->delete();
+            return response(null, 204);
+        } catch (Exception $e){
+            log::error('Algo fue mal');
+            log::error($e);
+            return response(null, 404);
+        }
     }
 
     public function store(Request $request)
