@@ -6,21 +6,26 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Log;
+
 
 class UsersController extends Controller
 {
     public function index()
     {
+        Log::info('Entrando en index.');
         return UserResource::collection(User::paginate(10));
     }
 
     public function show(User $user)
     {
+        Log::info('Entrando en show.');
         return new UserResource($user);
     }
 
     public function update(User $user, Request $request)
     {
+        Log::info('Entrando en update.');
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -33,6 +38,7 @@ class UsersController extends Controller
 
     public function destroy(User $user)
     {
+        Log::info('Entrando en delete.');
         try {
             $user->delete();
             return response(null, 204);

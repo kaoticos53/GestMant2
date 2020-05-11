@@ -10,6 +10,21 @@ import router from '@/js/routes.js'
 
 // Component File
 import App from '@/js/views/App'
+Vue.component('login', require('./components/login'))
+Vue.component(
+  'passport-clients',
+  require('./components/passport/Clients.vue').default
+)
+
+Vue.component(
+  'passport-authorized-clients',
+  require('./components/passport/AuthorizedClients.vue').default
+)
+
+Vue.component(
+  'passport-personal-access-tokens',
+  require('./components/passport/PersonalAccessTokens.vue').default
+)
 
 // Vue.use(vuetify)
 

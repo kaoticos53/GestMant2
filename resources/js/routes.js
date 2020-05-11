@@ -6,6 +6,7 @@ import UsersIndex from '@/js/components/UsersIndex'
 import UsersEdit from '@/js/components/UsersEdit'
 import UsersCreate from '@/js/components/UsersCreate'
 import NotFound from '@/js/components/NotFound'
+import login from '@/js/components/login'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const router = new VueRouter({
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   },
   {
     path: '/about',

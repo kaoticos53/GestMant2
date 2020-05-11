@@ -1,23 +1,28 @@
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
 
-const client = axios.create({
+const api = axios.create({
   baseURL: '/api'
+})
+
+axiosRetry(api, {
+  retries: 3
 })
 
 export default {
   all (params) {
-    return client.get('users', params)
+    return api.get('users', params)
   },
   find (id) {
-    return client.get(`users/${id}`)
+    return api.get(`users/${id}`)
   },
   create (data) {
-    return client.post('users', data)
+    return api.post('users', data)
   },
   update (id, data) {
-    return client.put(`users/${id}`, data)
+    return api.put(`users/${id}`, data)
   },
   delete (id) {
-    return client.delete(`users/${id}`)
+    return api.delete(`users/${id}`)
   }
 }

@@ -57,13 +57,18 @@ export default {
     onDelete() {
       this.saving = true;
 
-      api.delete(this.user.id).then(response => {
-        this.message = "User Deleted";
-        setTimeout(() => this.$router.push({ name: "users.index" }), 1000);
-      })
-      .catch(error => {
-          console.log(error);
-      });
+      api
+        .delete(this.user.id)
+        .then(response => {
+          console.log(response)
+          this.message = "User Deleted";
+          setTimeout(() => this.$router.push({ name: "users.index" }), 1000);
+        })
+        .catch(error => {
+            this.message = error;
+          console.log('me cago en too')
+          console.log(error.response);
+        });
     }
   },
   created() {

@@ -6,6 +6,16 @@
       clipped
     >
       <v-list dense>
+      <router-link :to="{ name: 'login' }">
+            <v-list-item link>
+                <v-list-item-action>
+                <v-icon>mdi-view-dashboard</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <v-list-item-title>Login</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+        </router-link>
       <router-link :to="{ name: 'home' }">
             <v-list-item link>
                 <v-list-item-action>
@@ -50,10 +60,11 @@
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-exit-to-app</v-icon>
-      </v-btn>
+      <router-link :to="{ name: 'login' }">
+        <v-btn icon>
+            <v-icon>mdi-lock</v-icon>
+        </v-btn>
+      </router-link>
       <v-menu
         left
         bottom
@@ -78,16 +89,7 @@
     </v-app-bar>
 
     <v-content>
-      <v-container
-        fluid
-        fill-height
-        >
-        <v-row aling center justify-center>
-            <v-col class="shrink">
-                <router-view></router-view>
-            </v-col>
-        </v-row>
-      </v-container>
+        <router-view></router-view>
     </v-content>
 
     <v-footer app>
