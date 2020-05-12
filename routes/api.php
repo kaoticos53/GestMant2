@@ -15,34 +15,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+  return $request->user();
 });
 
 Route::get('/verified-only', function (Request $request) {
-
-    dd('your are verified', $request->user()->name);
+  dd('your are verified', $request->user()->name);
 })->middleware('auth:api', 'verified');
-
 
 Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
-Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail');
+Route::post(
+  '/password/email',
+  'Api\ForgotPasswordController@sendResetLinkEmail'
+);
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');
 
+Route::get('/email/resend', 'Api\VerificationController@resend')->name(
+  'verification.resend'
+);
 
-Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
-
-Route::get('/email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
+Route::get(
+  '/email/verify/{id}/{hash}',
+  'Api\VerificationController@verify'
+)->name('verification.verify');
 
 Route::apiResource('tasks', 'Api\TasksController')->middleware('auth:api');
 
 // Test
 
 Route::namespace('Api')->group(function () {
-    Route::get('/users', 'UsersController@index');
-    Route::get('/users/{user}', 'UsersController@show');
-    Route::put('/users/{user}', 'UsersController@update');
-    Route::delete('/users/{user}', 'UsersController@destroy')->middleware('auth:api');
-    Route::post('/users', 'UsersController@store');
+  Route::get('/users', 'UsersController@index');
+  Route::get('/users/{user}', 'UsersController@show');
+  Route::put('/users/{user}', 'UsersController@update');
+  Route::delete('/users/{user}', 'UsersController@destroy')->middleware(
+    'auth:api'
+  );
+  Route::post('/users', 'UsersController@store');
 });

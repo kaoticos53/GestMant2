@@ -1,0 +1,165 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=15368, tid=0x0000000000004d14
+#
+# JRE version:  (8.0) (build )
+# Java VM: OpenJDK 64-Bit Server VM (25.71-b00 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000002a7c000):  JavaThread "Unknown thread" [_thread_in_vm, id=19732, stack(0x0000000002970000,0x0000000002a70000)]
+
+Stack: [0x0000000002970000,0x0000000002a70000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000002a7c000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=19732, stack(0x0000000002970000,0x0000000002a70000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+heap address: 0x00000006c1800000, size: 4072 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x00000007c0000000
+
+Heap:
+ PSYoungGen      total 76288K, used 1310K [0x000000076b300000, 0x0000000770800000, 0x00000007c0000000)
+  eden space 65536K, 2% used [0x000000076b300000,0x000000076b447af0,0x000000076f300000)
+  from space 10752K, 0% used [0x000000076fd80000,0x000000076fd80000,0x0000000770800000)
+  to   space 10752K, 0% used [0x000000076f300000,0x000000076f300000,0x000000076fd80000)
+ ParOldGen       total 175104K, used 0K [0x00000006c1800000, 0x00000006cc300000, 0x000000076b300000)
+  object space 175104K, 0% used [0x00000006c1800000,0x00000006c1800000,0x00000006cc300000)
+ Metaspace       used 777K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 74K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000000011f30000,0x0000000012730000] byte_map_base: 0x000000000e924000
+
+Marking Bits: (ParMarkBitMap*) 0x00000000554d8f30
+ Begin Bits: [0x0000000013480000, 0x0000000017420000)
+ End Bits:   [0x0000000017420000, 0x000000001b3c0000)
+
+Polling page: 0x0000000000fa0000
+
+CodeCache: size=245760Kb used=328Kb max_used=328Kb free=245431Kb
+ bounds [0x0000000002b70000, 0x0000000002de0000, 0x0000000011b70000]
+ total_blobs=57 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.044 loading class java/lang/Short
+Event: 0.045 loading class java/lang/Short done
+Event: 0.045 loading class java/lang/Integer
+Event: 0.045 loading class java/lang/Integer done
+Event: 0.045 loading class java/lang/Long
+Event: 0.045 loading class java/lang/Long done
+Event: 0.046 loading class java/lang/NullPointerException
+Event: 0.046 loading class java/lang/NullPointerException done
+Event: 0.046 loading class java/lang/ArithmeticException
+Event: 0.046 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff6c88c0000 - 0x00007ff6c88f5000 	C:\Program Files\Android\Jdk\microsoft_dist_openjdk_1.8.0.25\bin\java.exe
+0x00007ff914d20000 - 0x00007ff914f10000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ff913030000 - 0x00007ff9130e2000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ff911dd0000 - 0x00007ff912073000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ff913c70000 - 0x00007ff913d13000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ff914570000 - 0x00007ff91460e000 	C:\Windows\System32\msvcrt.dll
+0x00007ff913210000 - 0x00007ff9132a7000 	C:\Windows\System32\sechost.dll
+0x00007ff9135d0000 - 0x00007ff9136f0000 	C:\Windows\System32\RPCRT4.dll
+0x00007ff912e30000 - 0x00007ff912fc4000 	C:\Windows\System32\USER32.dll
+0x00007ff911cb0000 - 0x00007ff911cd1000 	C:\Windows\System32\win32u.dll
+0x00007ff9130f0000 - 0x00007ff913116000 	C:\Windows\System32\GDI32.dll
+0x00007ff912bd0000 - 0x00007ff912d64000 	C:\Windows\System32\gdi32full.dll
+0x00007ff912080000 - 0x00007ff91211e000 	C:\Windows\System32\msvcp_win.dll
+0x00007ff912aa0000 - 0x00007ff912b9a000 	C:\Windows\System32\ucrtbase.dll
+0x00007ff8ff7a0000 - 0x00007ff8ffa25000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.18362.778_none_e6c6b761130d4fb8\COMCTL32.dll
+0x00007ff913880000 - 0x00007ff913bb6000 	C:\Windows\System32\combase.dll
+0x00007ff911d30000 - 0x00007ff911db0000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ff914c50000 - 0x00007ff914c7e000 	C:\Windows\System32\IMM32.DLL
+0x0000000055560000 - 0x0000000055631000 	C:\Program Files\Android\Jdk\microsoft_dist_openjdk_1.8.0.25\jre\bin\msvcr100.dll
+0x0000000054d10000 - 0x0000000055555000 	C:\Program Files\Android\Jdk\microsoft_dist_openjdk_1.8.0.25\jre\bin\server\jvm.dll
+0x00007ff914a80000 - 0x00007ff914a88000 	C:\Windows\System32\PSAPI.DLL
+0x00007ff8fdb40000 - 0x00007ff8fdb49000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ff914500000 - 0x00007ff91456f000 	C:\Windows\System32\WS2_32.dll
+0x00007ff90bbe0000 - 0x00007ff90bc04000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ff9096e0000 - 0x00007ff9096ea000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ff90b7c0000 - 0x00007ff90b7ed000 	C:\Windows\SYSTEM32\winmmbase.dll
+0x00007ff911ce0000 - 0x00007ff911d2a000 	C:\Windows\System32\cfgmgr32.dll
+0x00007ff8d8120000 - 0x00007ff8d812f000 	C:\Program Files\Android\Jdk\microsoft_dist_openjdk_1.8.0.25\jre\bin\verify.dll
+0x00007ff8d6ae0000 - 0x00007ff8d6b09000 	C:\Program Files\Android\Jdk\microsoft_dist_openjdk_1.8.0.25\jre\bin\java.dll
+0x00007ff8d6ac0000 - 0x00007ff8d6ad6000 	C:\Program Files\Android\Jdk\microsoft_dist_openjdk_1.8.0.25\jre\bin\zip.dll
+
+VM Arguments:
+java_command: App 6997
+java_class_path (initial): c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\annotations-12.0.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\autolink-0.6.0.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\berkeleylm-1.1.2.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\commons-lang3-3.5.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\commons-logging-1.2.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-0.19.1.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-all-0.19.1.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-ext-abbreviation-0.19.1.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-ext-anchorlink-0.19.1.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-ext-aside-0.19.1.jar;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\flexmark-ext-autolink-0.
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Android\Jdk\microsoft_dist_openjdk_1.8.0.25
+CLASSPATH=c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-3.8.0\lib\languagetool-languageserver\build\install\languagetool-languageserver\bin\..\lib\*;c:\Users\kaoti\.vscode\extensions\adamvoss.vscode-languagetool-es-3.8.0\lib\*
+PATH=C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\tools\php74;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Amazon\AWSCLI\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\kaoti\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\kaoti\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kaoti\AppData\Roaming\npm;C:\Users\kaoti\AppData\Roaming\Composer\vendor\bin;C:\Users\kaoti\AppData\Local\GitHubDesktop\bin
+USERNAME=kaoti
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 18362 (10.0.18362.778)
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2
+
+Memory: 4k page, physical 16678072k(1479376k free), swap 67009720k(6052k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.71-b00) for windows-amd64 JRE (1.8.0-25-microsoft-b00), built on Feb  7 2019 20:09:14 by "builder" with MS VC++ 10.0 (VS2010)
+
+time: Tue May 12 09:58:10 2020
+timezone: Hora de verano romance
+elapsed time: 0 seconds (0d 0h 0m 0s)
+

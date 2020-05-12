@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="message" class="alert">{{ message }}</div>
-    <div v-if="! loaded">Loading...</div>
+    <div v-if="!loaded">Loading...</div>
     <form @submit.prevent="onSubmit($event)" v-else>
       <div class="form-group">
         <label for="user_name">Name</label>
@@ -13,7 +13,9 @@
       </div>
       <div class="form-group">
         <button type="submit" :disabled="saving">Update</button>
-        <button :disabled="saving" @click.prevent="onDelete($event)">Delete</button>
+        <button :disabled="saving" @click.prevent="onDelete($event)">
+          Delete
+        </button>
       </div>
     </form>
   </div>
@@ -31,8 +33,8 @@ export default {
       user: {
         id: null,
         name: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
   methods: {
@@ -42,46 +44,46 @@ export default {
       api
         .update(this.user.id, {
           name: this.user.name,
-          email: this.user.email
+          email: this.user.email,
         })
-        .then(response => {
+        .then((response) => {
           this.message = "User updated";
           this.user = response.data.data;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         })
-        .then(_ => (this.saving = false));
-        setTimeout(() => this.$router.push({ name: "users.index" }), 1000);
+        .then((_) => (this.saving = false));
+      setTimeout(() => this.$router.push({ name: "users.index" }), 1000);
     },
     onDelete() {
       this.saving = true;
 
       api
         .delete(this.user.id)
-        .then(response => {
-          console.log(response)
+        .then((response) => {
+          console.log(response);
           this.message = "User Deleted";
           setTimeout(() => this.$router.push({ name: "users.index" }), 1000);
         })
-        .catch(error => {
-            this.message = error;
-          console.log('me cago en too')
+        .catch((error) => {
+          this.message = error;
+          console.log("me cago en too");
           console.log(error.response);
         });
-    }
+    },
   },
   created() {
     api
       .find(this.$route.params.id)
-      .then(response => {
+      .then((response) => {
         this.loaded = true;
         this.user = response.data.data;
       })
-      .catch(err => {
+      .catch((err) => {
         this.$router.push({ name: "404" });
       });
-  }
+  },
 };
 </script>
 
