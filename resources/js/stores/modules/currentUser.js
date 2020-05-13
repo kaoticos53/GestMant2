@@ -1,5 +1,6 @@
 const state = {
   usuario: {},
+  user:{},
   error: '',
   isLogin: false
 }
@@ -7,6 +8,12 @@ const state = {
 const getters = {};
 
 const actions = {
+  getUser({commit}){
+    axios.get("/api/user/current")
+    .then( response => {
+      commit('setUser', response.data);
+    });
+  },
   crearUsuario({commit}, payload) {
     console.log(payload)
     commit('setUsuario', {
@@ -14,7 +21,7 @@ const actions = {
       password: payload.password
     })
   },
-  login({}, user){
+  loginUser({}, user){
     axios
     .post("api/login", {
       email: user.email,
@@ -31,15 +38,23 @@ const actions = {
         window.location.replace("/home")
       }
     })
+  },
+  logoutUser(){
+    //remove token
+    localStorage.removeItem("api_token");
+    windows.location.replace("/login");
   }
 }
 
 const mutations = {
-  setUsuario(state, payload) {
-    state.usuario = payload
+  setUser(state, payload) {
+    state.user = payload
   },
   setError(state, payload) {
     state.error = payload
+  },
+  setUser(state, payload) {
+    state.user = payload;
   }
 };
 

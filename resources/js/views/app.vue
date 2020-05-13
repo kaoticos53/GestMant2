@@ -40,8 +40,8 @@
         </template>
 
         <v-list>
-          <v-list-item v-for="n in 5" :key="n" @click="() => {}">
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
+          <v-list-item @click="logout">
+            <v-list-item-title>logout</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -79,10 +79,32 @@ export default {
         this.isLogueado = state.isLogin;
         return state.isLogin ? "mdi-face" : "mdi-lock";
       },
+      loggedIn:{
+        get(){
+          return this.$store.state.currentUser.loggedIn;
+        }
+      },
+      currentUser: {
+        get() {
+          return this.$store.state.currentUser.user;
+        }
+      }
     }),
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('currentUser/logoutUser');
+    }
   },
   created() {
     this.$vuetify.theme.dark = true;
+
+    if(localStorage.hasOwnProperty("api_token")) {
+      axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("api_token");
+      this.$store.dispatch('currentUser/getUser');
+    } else {
+      window.Location.replace("/login");
+    }
   },
 };
 </script>

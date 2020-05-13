@@ -37,34 +37,28 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <p>{{ user }}</p>
   </v-container>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+// import { mapActions, mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      user: {
-        email: "",
-        password: ""
+  data: () => ({
+    user: {
+      mail: "",
+      password: ""
       },
-      valid: false,
-      e1: false,
-      passwordRules: [v => !!v || "Password is required"],
-      emailRules: [
-        v => !!v || "E-mail is required",
-        v =>
-          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+    valid: false,
+    e1: false,
+    passwordRules: [v => !!v || "Password is required"],
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v =>
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid"
-      ]
-    };
-  },
-  computed: {
-    ...mapState(["usuario"])
-  },
+    ]
+  }),
   methods: {
     clear() {
       this.$refs.form.reset();
@@ -72,7 +66,7 @@ export default {
     login() {
       this.$store.dispatch('currentUser/loginUser', this.user)
     }
-    ...mapActions(["crearUsuario"])
+    //...mapActions(["crearUsuario"])
   }
 };
 </script>

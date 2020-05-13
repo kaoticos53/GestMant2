@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
@@ -21,6 +22,10 @@ class UsersController extends Controller
     {
         Log::info('Entrando en show.');
         return new UserResource($user);
+    }
+
+    public function currentUser(){
+      return Auth::user();
     }
 
     public function update(User $user, Request $request)

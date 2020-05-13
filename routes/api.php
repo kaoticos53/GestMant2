@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-  return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//   return $request->user();
+// });
 
 Route::get('/verified-only', function (Request $request) {
   dd('your are verified', $request->user()->name);
@@ -44,12 +44,11 @@ Route::apiResource('tasks', 'Api\TasksController')->middleware('auth:api');
 
 // Test
 
-Route::namespace('Api')->group(function () {
+Route::namespace('Api')->prefix('/user')->group(function () {
   Route::get('/users', 'UsersController@index');
   Route::get('/users/{user}', 'UsersController@show');
   Route::put('/users/{user}', 'UsersController@update');
-  Route::delete('/users/{user}', 'UsersController@destroy')->middleware(
-    'auth:api'
-  );
+  Route::middleware('auth:api')->delete('/users/{user}', 'UsersController@destroy');
   Route::post('/users', 'UsersController@store');
+  Route::middleware('auth:api')->get('/current', 'UserController@currentUser');
 });
