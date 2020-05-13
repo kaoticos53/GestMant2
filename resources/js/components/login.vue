@@ -11,10 +11,10 @@
           <v-card-text class="pt-4">
             <div>
               <v-form v-model="valid" ref="form">
-                <v-text-field label="Email" v-model="email" :rules="emailRules" required></v-text-field>
+                <v-text-field label="Email" v-model="user.email" :rules="emailRules" required></v-text-field>
                 <v-text-field
                   label="Password"
-                  v-model="password"
+                  v-model="user.password"
                   min="8"
                   :append-icon="e1 ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="() => (e1 = !e1)"
@@ -25,7 +25,7 @@
                 ></v-text-field>
                 <v-layout justify-space-between>
                   <v-btn
-                    @click="crearUsuario({ email: email, pass: password })"
+                    @click="login"
                     :disabled="!valid"
                     :class="{ 'blue darken-4 text--white': valid }"
                   >Login</v-btn>
@@ -37,7 +37,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <p>{{ usuario }}</p>
+    <p>{{ user }}</p>
   </v-container>
 </template>
 
@@ -47,11 +47,13 @@ import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
+      user: {
+        email: "",
+        password: ""
+      },
       valid: false,
       e1: false,
-      password: "",
       passwordRules: [v => !!v || "Password is required"],
-      email: "",
       emailRules: [
         v => !!v || "E-mail is required",
         v =>
@@ -67,6 +69,9 @@ export default {
     clear() {
       this.$refs.form.reset();
     },
+    login() {
+      this.$store.dispatch('currentUser/loginUser', this.user)
+    }
     ...mapActions(["crearUsuario"])
   }
 };
