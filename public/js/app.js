@@ -2275,6 +2275,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2325,7 +2327,7 @@ __webpack_require__.r(__webpack_exports__);
         }, 1000);
       })["catch"](function (error) {
         _this2.message = error;
-        console.log('me cago en too');
+        console.log("me cago en too");
         console.log(error.response);
       });
     }
@@ -2556,24 +2558,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       valid: false,
       e1: false,
-      password: '',
+      password: "",
       passwordRules: [function (v) {
-        return !!v || 'Password is required';
+        return !!v || "Password is required";
       }],
-      email: '',
+      email: "",
       emailRules: [function (v) {
-        return !!v || 'E-mail is required';
+        return !!v || "E-mail is required";
       }, function (v) {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid';
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || "E-mail must be valid";
       }]
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['usuario'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["usuario"])),
   methods: _objectSpread({
     clear: function clear() {
       this.$refs.form.reset();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['crearUsuario']))
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(["crearUsuario"]))
 });
 
 /***/ }),
@@ -3422,6 +3424,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3481,56 +3490,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
   },
   data: function data() {
     return {
-      drawer: null
+      drawer: null,
+      isLogueado: false,
+      menus: [{
+        name: "inicio",
+        icono: "mdi-view-dashboard",
+        route: "home"
+      }, {
+        name: "Usuarios",
+        icono: "mdi-settings",
+        route: "users.index"
+      }, {
+        name: "Acerca de",
+        icono: "mdi-settings",
+        route: "about"
+      }]
     };
   },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["usuario", "error"])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    loginIcon: function loginIcon(state) {
+      this.isLogueado = state.isLogin;
+      return state.isLogin ? "mdi-face" : "mdi-lock";
+    }
+  })),
   created: function created() {
     this.$vuetify.theme.dark = true;
   }
@@ -24269,7 +24258,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Delete")]
+                [_vm._v("\n        Delete\n      ")]
               )
             ])
           ]
@@ -25793,10 +25782,10 @@ var render = function() {
           _c(
             "v-list",
             { attrs: { dense: "" } },
-            [
-              _c(
+            _vm._l(_vm.menus, function(menu, index) {
+              return _c(
                 "router-link",
-                { attrs: { to: { name: "login" } } },
+                { key: index, attrs: { to: { name: menu.route } } },
                 [
                   _c(
                     "v-list-item",
@@ -25804,91 +25793,13 @@ var render = function() {
                     [
                       _c(
                         "v-list-item-action",
-                        [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
+                        [_c("v-icon", [_vm._v(_vm._s(menu.icono))])],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "v-list-item-content",
-                        [_c("v-list-item-title", [_vm._v("Login")])],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { to: { name: "home" } } },
-                [
-                  _c(
-                    "v-list-item",
-                    { attrs: { link: "" } },
-                    [
-                      _c(
-                        "v-list-item-action",
-                        [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-item-content",
-                        [_c("v-list-item-title", [_vm._v("Inicio")])],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { to: { name: "users.index" } } },
-                [
-                  _c(
-                    "v-list-item",
-                    { attrs: { link: "" } },
-                    [
-                      _c(
-                        "v-list-item-action",
-                        [_c("v-icon", [_vm._v("mdi-view-dashboard")])],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-item-content",
-                        [_c("v-list-item-title", [_vm._v("Usuarios")])],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { to: { name: "about" } } },
-                [
-                  _c(
-                    "v-list-item",
-                    { attrs: { link: "" } },
-                    [
-                      _c(
-                        "v-list-item-action",
-                        [_c("v-icon", [_vm._v("mdi-settings")])],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list-item-content",
-                        [_c("v-list-item-title", [_vm._v("Acerca de")])],
+                        [_c("v-list-item-title", [_vm._v(_vm._s(menu.name))])],
                         1
                       )
                     ],
@@ -25897,7 +25808,7 @@ var render = function() {
                 ],
                 1
               )
-            ],
+            }),
             1
           )
         ],
@@ -25935,7 +25846,7 @@ var render = function() {
               _c(
                 "v-btn",
                 { attrs: { icon: "" } },
-                [_c("v-icon", [_vm._v("mdi-lock")])],
+                [_c("v-icon", [_vm._v(_vm._s(_vm.loginIcon))])],
                 1
               )
             ],
@@ -83991,7 +83902,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     usuario: '',
-    error: ''
+    error: '',
+    isLogin: false
   },
   mutations: {
     setUsuario: function setUsuario(state, payload) {

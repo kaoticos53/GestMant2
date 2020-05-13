@@ -6,23 +6,28 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     usuario: '',
-    error: ''
+    error: '',
+    isLogin: false
   },
   mutations: {
-    setUsuario (state, payload) {
+    setUsuario(state, payload) {
       state.usuario = payload
     },
-    setError (state, payload) {
+    setError(state, payload) {
       state.error = payload
     }
   },
   actions: {
-    crearUsuario ({ commit }, payload) {
+    crearUsuario({
+      commit
+    }, payload) {
       console.log(payload)
-      commit('setUsuario', { email: payload.email, password: payload.password })
+      commit('setUsuario', {
+        email: payload.email,
+        password: payload.password
+      })
     }
 
   },
-  modules: {
-  }
+  modules: {}
 })

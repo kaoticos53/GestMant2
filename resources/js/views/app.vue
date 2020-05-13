@@ -1,58 +1,25 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
+    <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-      <router-link :to="{ name: 'login' }">
-            <v-list-item link>
-                <v-list-item-action>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>Login</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-        </router-link>
-      <router-link :to="{ name: 'home' }">
-            <v-list-item link>
-                <v-list-item-action>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>Inicio</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-        </router-link>
-        <router-link :to="{ name: 'users.index' }">
-            <v-list-item link>
-                <v-list-item-action>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>Usuarios</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-        </router-link>
-        <router-link :to="{ name: 'about' }">
-            <v-list-item link>
+        <router-link
+          v-for="(menu, index) in menus"
+          :key="index"
+          :to="{ name: menu.route }"
+        >
+          <v-list-item link>
             <v-list-item-action>
-                <v-icon>mdi-settings</v-icon>
+              <v-icon>{{ menu.icono }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-                <v-list-item-title>Acerca de</v-list-item-title>
+              <v-list-item-title>{{ menu.name }}</v-list-item-title>
             </v-list-item-content>
-            </v-list-item>
+          </v-list-item>
         </router-link>
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      clipped-left
-    >
+    <v-app-bar app clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Gestión de Mantenimiento</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -62,14 +29,10 @@
       </v-btn>
       <router-link :to="{ name: 'login' }">
         <v-btn icon>
-            <v-icon>mdi-lock</v-icon>
+          <v-icon>{{ loginIcon }}</v-icon>
         </v-btn>
       </router-link>
-      <v-menu
-        left
-        bottom
-        y-offset
-      >
+      <v-menu left bottom y-offset>
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on">
             <v-icon>mdi-dots-vertical</v-icon>
@@ -77,11 +40,7 @@
         </template>
 
         <v-list>
-          <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
-          >
+          <v-list-item v-for="n in 5" :key="n" @click="() => {}">
             <v-list-item-title>Option {{ n }}</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -89,7 +48,7 @@
     </v-app-bar>
 
     <v-content>
-        <router-view></router-view>
+      <router-view></router-view>
     </v-content>
 
     <v-footer app>
@@ -99,15 +58,31 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: null,
+import { mapActions, mapState } from "vuex";
+export default {
+  props: {
+    source: String,
+  },
+  data: () => ({
+    drawer: null,
+    isLogueado: false,
+    menus: [
+      { name: "inicio", icono: "mdi-view-dashboard", route: "home" },
+      { name: "Usuarios", icono: "mdi-settings", route: "users.index" },
+      { name: "Acerca de", icono: "mdi-settings", route: "about" },
+    ],
+  }),
+  computed: {
+    ...mapState(["usuario", "error"]),
+    ...mapState({
+      loginIcon(state) {
+        this.isLogueado = state.isLogin;
+        return state.isLogin ? "mdi-face" : "mdi-lock";
+      },
     }),
-    created () {
-      this.$vuetify.theme.dark = true
-    },
-  }
+  },
+  created() {
+    this.$vuetify.theme.dark = true;
+  },
+};
 </script>
